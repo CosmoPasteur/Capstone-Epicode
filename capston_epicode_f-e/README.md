@@ -1,60 +1,12 @@
-Progetto finale Epicode.
+# React + Vite
 
-TITOLO del PROGETTO: Bastone Studio
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-L'idea è quella di creare un sito web sviluppato per un fotografo professionista, pensato per valorizzare il suo lavoro attraverso una vetrina digitale elegante, funzionale e facilmente navigabile.
-Gli obiettivi principali sono quelli di digitalizzare la presenza online del fotografo, offrendo uno strumento efficace per presentare i servizi offerti, le raccolte fotografiche e facilitare il contatto con i potenziali clienti.
+Currently, two official plugins are available:
 
-Il fotografo (amministratore) potrà:
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- Accedere a un’area riservata tramite login,
+## Expanding the ESLint configuration
 
-- Caricare nuove gallerie e immagini,
-
-- Gestire richieste ricevute e aggiornare le informazioni personali.
-
-Tecnologie utilizzate:
-Frontend:
-
-- React,
-
-- Bootstrap / CSS,
-
-- React Router,
-
-- Gestione immagini tramite upload e anteprima (URL)
-
-- json
-
-Backend:
-
-- Java + Spring Boot,
-
-- Spring Security (per login admin),
-
-- Maven.
-
-Extra
-
-Java Mail Sender (per ricezione email dal form di contatto)
-
-Funzionalità principali per i visitatori:
-
-- 🖼️ Esplorazione gallerie fotografiche
-
-- 📝 Form contatto per preventivi o collaborazioni
-
-- 📱 Responsive design per mobile e desktop
-
-Per l’amministratore:
-
-- Per l’amministratore
-- 🔐 Login sicuro
-- 📁 Caricamento e gestione gallerie
-- 📬 Visualizzazione richieste ricevute
-- ⚙️ Pannello di controllo semplice ed efficace
-
-Le mie intenzioni di rilascio sono:
-V1 - Hoempage, galleria, About/Bio, form contatto, login admin base.
-V2 - CRUD gallerie e immagini, salvataggio su PostgreSQL
-V3 - Upload immagini
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

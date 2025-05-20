@@ -2,7 +2,7 @@ Progetto finale Epicode.
 
 TITOLO del PROGETTO: Bastone Studio
 
-L'idea è quella di creare un sito web sviluppato per un fotografo professionista, pensato per valorizzare il suo lavoro attraverso una vetrina digitale elegante, funzionale e facilmente navigabile. Gli obiettivi principali sono quelli di digitalizzare la presenza online del fotografo, offrendo uno strumento efficace per presentare i servizi offerti, le raccolte fotografiche e facilitare il contatto con i potenziali clienti.
+L'idea è quella di creare un sito web sviluppato per un fotografo professionista, pensato per valorizzare il suo lavoro attraverso una vetrina digitale elegante, funzionale e facilmente navigabile. Gli obiettivi (aspettative) principali sono quelli di digitalizzare la presenza online del fotografo, offrendo uno strumento efficace per presentare i servizi offerti, le raccolte fotografiche e facilitare il contatto con i potenziali clienti.
 
 Il fotografo (amministratore) potrà:
 
@@ -51,4 +51,8 @@ Per l’amministratore
 📁 Caricamento e gestione gallerie
 📬 Visualizzazione richieste ricevute
 ⚙️ Pannello di controllo semplice ed efficace
-Le mie intenzioni di rilascio sono: V1 - Hoempage, galleria, About/Bio, form contatto, login admin base. V2 - CRUD gallerie e immagini, salvataggio su PostgreSQL V3 - Upload immagini
+
+Le mie intenzioni di rilascio sono: 
+V1 - Hoempage, galleria, About/Bio, form contatto, login admin base. 
+V2 - CRUD gallerie e immagini, salvataggio su PostgreSQL 
+V3 - Upload immagini

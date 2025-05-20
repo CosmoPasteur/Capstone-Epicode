@@ -9,7 +9,7 @@
 .center-navbar .navbar-brand {
   text-align: center;
   font-weight: bold;
-  font-size: 55px; /* Dimensione del logo */
+  font-size: 55px;
 }
 
 .nav-link {
@@ -17,7 +17,6 @@
   font-weight: bold;
   font-size: 18px;
   padding: 0;
-  /* font-family: "Bebas Neue", sans-serif; */
 }
 
 .logo {

@@ -1,12 +1,12 @@
 /*** ABOUT ***/
 .card-image-about {
-  max-width: 80%; /* Modifica la larghezza dell'immagine */
+  max-width: 80%;
   aspect-ratio: 10 / 18;
-  margin: 20px auto; /* Centra orizzontalmente */
+  margin: 20px auto;
   display: block;
   object-fit: cover;
   border: 5px solid black;
-  padding: 10px; /* Distanza tra l'immagine e il bordo */
-  box-sizing: border-box; /* Considera il padding nel calcolo delle dimensioni */
+  padding: 10px;
+  box-sizing: border-box;
   transition: transform 0.3s ease;
 }

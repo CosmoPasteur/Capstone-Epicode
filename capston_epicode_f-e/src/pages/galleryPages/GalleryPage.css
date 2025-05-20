@@ -1,0 +1,60 @@
+/***  GALLERY PAGE -> card delle foto    ***/
+/* Per Nascondere i dettagli inizialmente */
+.image-details {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.6); /* Colore sfondo semitrasparente */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  width: calc(100% - 20px); /* Mantieni i dettagli dentro la card */
+}
+
+/* Posiziona la card in relazione all'immagine */
+.image-card {
+  position: relative;
+}
+
+/* Mostra i dettagli quando si passa sopra con il mouse */
+.image-card:hover .image-details {
+  display: block;
+}
+
+/* Stilizza l'immagine */
+.card-img-top {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.card-image-gallery {
+  aspect-ratio: 4 / 3;
+}
+
+/* Opacità leggera per l'immagine */
+.image-card:hover .card-img-top {
+  opacity: 0.7;
+  border-radius: 8px;
+  transform: scale(1.05);
+}
+
+/* GALLERY PAGE -> MODALE IMG GRANDE */
+.lightbox-modal .modal-content {
+  background-color: black;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.lightbox-modal .modal-body {
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .lightbox-modal .modal-body img {
+    max-height: 60vh;
+  }
+}

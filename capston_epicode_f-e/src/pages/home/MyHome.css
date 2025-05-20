@@ -1,0 +1,52 @@
+/***    HOME    ***/
+/* CAROSELLO */
+.carousel-image {
+  height: 650px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.ehila {
+  display: flex;
+  padding-top: 9rem;
+  padding-left: 8rem;
+  font-size: 4rem;
+
+  font-family: "Gloock", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.dark {
+  background-color: black;
+  border: solid 2.5px black;
+  color: white;
+  padding: 10px;
+
+  font-family: "Cal Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.home-bio-image {
+  max-width: 100%;
+  border: solid 5px black;
+  padding: 20px;
+  margin: -2rem;
+}
+
+/*    CARD IMAGE - CAROSELLO HOME   */
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  background-color: white;
+  display: flex;
+
+  font-family: "Cal Sans", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}

@@ -1,0 +1,82 @@
+/*** BLOG ***/
+#blog {
+  margin-inline: 10rem;
+}
+
+.blog-container {
+  border: solid grey 1px;
+}
+
+.blog-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3; /* proporzioni */
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.blog-image:hover {
+  transform: scale(1.05);
+}
+
+.linkBlog {
+  color: black;
+  padding: 5px;
+  font-size: 1rem;
+}
+
+/* ********* */
+
+/* LIGHTBOX CUSTOM */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1060;
+}
+
+.lightbox-nav.prev {
+  left: 200px;
+}
+
+.lightbox-nav.next {
+  right: 200px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 1060;
+}

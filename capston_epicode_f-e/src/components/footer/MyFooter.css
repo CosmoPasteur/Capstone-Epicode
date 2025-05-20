@@ -1,0 +1,38 @@
+/***    FOOTER    ***/
+.footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+
+  font-family: "Cal Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.footer-sx h2 {
+  font-size: 5rem;
+  margin-bottom: 0;
+}
+
+.footer-dx {
+  font-size: 2rem;
+}
+
+.footer-link {
+  text-align: right;
+}
+
+.footer-link,
+.social-link {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #0765f3;
+}
+
+.social-link:hover {
+  color: #f76c6f;
+}

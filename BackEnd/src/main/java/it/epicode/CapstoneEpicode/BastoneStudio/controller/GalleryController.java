@@ -14,48 +14,34 @@ import java.util.List;
 public class GalleryController {
 
     @Autowired
-    private GalleryRepository galleryRepo;
+    private GalleryRepository galleryRepository;
 
-    // ✅ GET: Lista tutte le gallerie
     @GetMapping
-    public List<Gallery> getAllGalleries() {
-        return galleryRepo.findAll();
+    public List<Gallery> getAll() {
+        return galleryRepository.findAll();
     }
 
-    // ✅ GET by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<Gallery> getGalleryById(@PathVariable Long id) {
-        return galleryRepo.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    @GetMapping("/{slug}")
+    public Gallery getBySlug(@PathVariable String slug) {
+        return galleryRepository.findBySlug(slug).orElseThrow();
     }
 
-    // ✅ POST: Crea una nuova galleria
     @PostMapping
-    public ResponseEntity<Gallery> createGallery(@Valid @RequestBody Gallery gallery) {
-        return ResponseEntity.ok(galleryRepo.save(gallery));
+    public Gallery create(@RequestBody Gallery gallery) {
+        return galleryRepository.save(gallery);
     }
 
-    // ✅ PUT: Aggiorna una galleria
     @PutMapping("/{id}")
-    public ResponseEntity<Gallery> updateGallery(@PathVariable Long id, @Valid @RequestBody Gallery updatedGallery) {
-        return galleryRepo.findById(id)
-                .map(gallery -> {
-                    gallery.setTitle(updatedGallery.getTitle());
-                    gallery.setSlug(updatedGallery.getSlug());
-                    gallery.setCoverImage(updatedGallery.getCoverImage());
-                    return ResponseEntity.ok(galleryRepo.save(gallery));
-                })
-                .orElse(ResponseEntity.notFound().build());
+    public Gallery update(@PathVariable Long id, @RequestBody Gallery updated) {
+        Gallery gallery = galleryRepository.findById(id).orElseThrow();
+        gallery.setTitle(updated.getTitle());
+        gallery.setSlug(updated.getSlug());
+        gallery.setCoverImage(updated.getCoverImage());
+        return galleryRepository.save(gallery);
     }
 
-    // ✅ DELETE: Elimina una galleria
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteGallery(@PathVariable Long id) {
-        if (!galleryRepo.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        galleryRepo.deleteById(id);
-        return ResponseEntity.noContent().build();
+    public void delete(@PathVariable Long id) {
+        galleryRepository.deleteById(id);
     }
 }

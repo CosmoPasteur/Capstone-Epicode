@@ -19,10 +19,19 @@ public class ContactRequest {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private String cognome;
+
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String telefono;
+
+    @Column(nullable = false)
     private LocalDate dataEvento;
 
     @Enumerated(EnumType.STRING)

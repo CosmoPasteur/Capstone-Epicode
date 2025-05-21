@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Data
@@ -21,6 +22,7 @@ public class Image {
     private String description;
     private String location;
 
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToOne
     private Gallery gallery;
 }

@@ -14,17 +14,15 @@ import java.util.List;
 public class ContactRequestController {
 
     @Autowired
-    private ContactRequestRepository contactRepo;
+    private ContactRequestRepository contactRequestRepository;
 
-    // ✅ GET: tutti i messaggi
     @GetMapping
-    public List<ContactRequest> getAllRequests() {
-        return contactRepo.findAll();
+    public List<ContactRequest> getAll() {
+        return contactRequestRepository.findAll();
     }
 
-    // ✅ POST: nuovo messaggio
     @PostMapping
-    public ResponseEntity<ContactRequest> createRequest(@Valid @RequestBody ContactRequest request) {
-        return ResponseEntity.ok(contactRepo.save(request));
+    public ContactRequest create(@RequestBody ContactRequest request) {
+        return contactRequestRepository.save(request);
     }
 }

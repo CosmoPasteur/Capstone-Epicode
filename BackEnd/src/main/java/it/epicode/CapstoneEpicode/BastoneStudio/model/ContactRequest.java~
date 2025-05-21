@@ -2,7 +2,10 @@ package it.epicode.CapstoneEpicode.BastoneStudio.model;
 
 import it.epicode.CapstoneEpicode.BastoneStudio.enums.Tipologia;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,9 +44,7 @@ public class ContactRequest {
     @FutureOrPresent(message = "La data dell'evento non può essere nel passato")
     private LocalDate dataEvento;
 
-    @NotNull(message = "Seleziona una tipologia")
     @Enumerated(EnumType.STRING)
     private Tipologia tipologia;
-
     private String comeConosciuto;
 }

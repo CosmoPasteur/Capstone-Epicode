@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -31,13 +32,13 @@ public class GalleryController {
 
     // ✅ POST: Crea una nuova galleria
     @PostMapping
-    public ResponseEntity<Gallery> createGallery(@RequestBody Gallery gallery) {
+    public ResponseEntity<Gallery> createGallery(@Valid @RequestBody Gallery gallery) {
         return ResponseEntity.ok(galleryRepo.save(gallery));
     }
 
     // ✅ PUT: Aggiorna una galleria
     @PutMapping("/{id}")
-    public ResponseEntity<Gallery> updateGallery(@PathVariable Long id, @RequestBody Gallery updatedGallery) {
+    public ResponseEntity<Gallery> updateGallery(@PathVariable Long id, @Valid @RequestBody Gallery updatedGallery) {
         return galleryRepo.findById(id)
                 .map(gallery -> {
                     gallery.setTitle(updatedGallery.getTitle());

@@ -1,12 +1,13 @@
 package it.epicode.CapstoneEpicode.BastoneStudio.controller;
 
 import it.epicode.CapstoneEpicode.BastoneStudio.model.Image;
-import it.epicode.CapstoneEpicode.BastoneStudio.repository.GalleryRepository;
 import it.epicode.CapstoneEpicode.BastoneStudio.repository.ImageRepository;
+import it.epicode.CapstoneEpicode.BastoneStudio.repository.GalleryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -41,13 +42,13 @@ public class ImageController {
 
     // ✅ POST: Crea immagine
     @PostMapping
-    public ResponseEntity<Image> createImage(@RequestBody Image image) {
+    public ResponseEntity<Image> createImage(@Valid @RequestBody Image image) {
         return ResponseEntity.ok(imageRepo.save(image));
     }
 
     // ✅ PUT: Aggiorna immagine
     @PutMapping("/{id}")
-    public ResponseEntity<Image> updateImage(@PathVariable Long id, @RequestBody Image updatedImage) {
+    public ResponseEntity<Image> updateImage(@PathVariable Long id, @Valid @RequestBody Image updatedImage) {
         return imageRepo.findById(id)
                 .map(image -> {
                     image.setUrl(updatedImage.getUrl());

@@ -1,7 +1,9 @@
-package it.epicode.CapstoneEpicode.BastoneStudio.config;
+package it.epicode.CapstoneEpicode.BastoneStudio.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,21 +15,24 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .cors() // Abilita CORS
-                .and()
-                .authorizeHttpRequests()
-                .requestMatchers("/api/auth/**").permitAll() // Login libero
-                .requestMatchers("/api/admin/**").hasRole("ADMIN") // Solo admin
-                .anyRequest().permitAll(); // Tutte le altre rotte sono pubbliche
-
-        return http.build();
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf().disable()
+                .authorizeHttpRequests()
+                .requestMatchers("/api/admin/login").permitAll()
+                .requestMatchers("/api/admin/**").authenticated()
+                .anyRequest().permitAll();
+
+        return http.build();
     }
 }

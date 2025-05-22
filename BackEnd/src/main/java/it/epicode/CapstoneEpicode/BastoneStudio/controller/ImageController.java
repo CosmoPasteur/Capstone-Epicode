@@ -1,42 +1,34 @@
 package it.epicode.CapstoneEpicode.BastoneStudio.controller;
 
 import it.epicode.CapstoneEpicode.BastoneStudio.dto.ImageDTO;
+import it.epicode.CapstoneEpicode.BastoneStudio.model.Image;
 import it.epicode.CapstoneEpicode.BastoneStudio.service.ImageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/images")
 public class ImageController {
 
-    private final ImageService imageService;
+    @Autowired
+    private ImageService imageService;
 
-    public ImageController(ImageService imageService) {
-        this.imageService = imageService;
-    }
-
-    // ✅ GET by Gallery ID
     @GetMapping("/gallery/{galleryId}")
-    public List<ImageDTO> getImagesByGallery(@PathVariable Long galleryId) {
-        return imageService.getByGallery(galleryId);
+    public ResponseEntity<List<Image>> getImagesByGalleryId(@PathVariable Long galleryId) {
+        return ResponseEntity.ok(imageService.getImagesByGalleryId(galleryId));
     }
 
-    // ✅ POST: Aggiunge immagine a una galleria
-    @PostMapping("/gallery/{galleryId}")
-    public ResponseEntity<ImageDTO> addImageToGallery(
-            @PathVariable Long galleryId,
-            @Valid @RequestBody ImageDTO dto) {
-        ImageDTO created = imageService.addToGallery(galleryId, dto);
-        return ResponseEntity.ok(created);
+    @PostMapping
+    public ResponseEntity<Image> uploadImage(@RequestBody ImageDTO dto) {
+        return ResponseEntity.ok(imageService.save(dto));
     }
 
-    // ✅ DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteImage(@PathVariable Long id) {
-        imageService.delete(id);
+        imageService.deleteImage(id);
         return ResponseEntity.noContent().build();
     }
 }

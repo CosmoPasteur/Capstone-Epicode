@@ -1,7 +1,6 @@
 package it.epicode.CapstoneEpicode.BastoneStudio.controller;
 
 import it.epicode.CapstoneEpicode.BastoneStudio.dto.LoginRequestDTO;
-import it.epicode.CapstoneEpicode.BastoneStudio.dto.ApiResponse;
 import it.epicode.CapstoneEpicode.BastoneStudio.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +14,7 @@ public class AuthController {
     private AdminService adminService;
 
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse> login(@RequestBody LoginRequestDTO dto) {
+    public ResponseEntity<?> login(@RequestBody LoginRequestDTO dto) {
         return adminService.login(dto);
     }
 }

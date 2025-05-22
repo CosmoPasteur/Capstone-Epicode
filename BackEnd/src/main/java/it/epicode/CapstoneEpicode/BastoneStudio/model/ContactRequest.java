@@ -6,13 +6,13 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "contact_requests")
 public class ContactRequest {
 
@@ -20,24 +20,19 @@ public class ContactRequest {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(nullable = false)
     @NotBlank(message = "Il nome è obbligatorio")
     private String nome;
 
-    @Column(nullable = false)
     @NotBlank(message = "Il cognome è obbligatorio")
     private String cognome;
 
-    @Column(nullable = false)
     @Email(message = "Inserisci un'email valida")
     @NotBlank(message = "L'email è obbligatoria")
     private String email;
 
-    @Column(nullable = false)
     @Size(min = 8, message = "Il numero di telefono deve essere almeno di 8 cifre")
     private String telefono;
 
-    @Column(nullable = false)
     @FutureOrPresent(message = "La data dell'evento non può essere nel passato")
     private LocalDate dataEvento;
 
@@ -46,4 +41,7 @@ public class ContactRequest {
     private Tipologia tipologia;
 
     private String comeConosciuto;
+
+    @Column(updatable = false)
+    private LocalDateTime receivedAt = LocalDateTime.now();
 }

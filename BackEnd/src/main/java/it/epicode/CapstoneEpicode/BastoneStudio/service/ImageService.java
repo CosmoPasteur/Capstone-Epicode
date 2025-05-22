@@ -5,50 +5,45 @@ import it.epicode.CapstoneEpicode.BastoneStudio.model.Gallery;
 import it.epicode.CapstoneEpicode.BastoneStudio.model.Image;
 import it.epicode.CapstoneEpicode.BastoneStudio.repository.GalleryRepository;
 import it.epicode.CapstoneEpicode.BastoneStudio.repository.ImageRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class ImageService {
 
+    @Autowired
     private ImageRepository imageRepository;
 
     @Autowired
     private GalleryRepository galleryRepository;
 
-    public List<ImageDTO> getByGallery(Long galleryId) {
-        return imageRepository.findByGalleryId(galleryId)
-                .stream().map(this::toDTO).collect(Collectors.toList());
+    public List<Image> getImagesByGalleryId(Long galleryId) {
+        return imageRepository.findByGalleryId(galleryId);
     }
 
-    public ImageDTO addToGallery(Long galleryId, ImageDTO dto) {
-        Gallery gallery = galleryRepository.findById(galleryId).orElseThrow();
+    public Image save(ImageDTO dto) {
         Image image = new Image();
+
         image.setUrl(dto.getUrl());
         image.setTitle(dto.getTitle());
         image.setDescription(dto.getDescription());
         image.setLocation(dto.getLocation());
-        image.setGallery(gallery);
-        return toDTO(imageRepository.save(image));
+        image.setAltText(dto.getAltText());
+
+        Optional<Gallery> gallery = galleryRepository.findById(dto.getGalleryId());
+        if (gallery.isPresent()) {
+            image.setGallery(gallery.get());
+        } else {
+            throw new RuntimeException("Galleria non trovata");
+        }
+
+        return imageRepository.save(image);
     }
 
-    public void delete(Long id) {
+    public void deleteImage(Long id) {
         imageRepository.deleteById(id);
-    }
-
-    private ImageDTO toDTO(Image image) {
-        ImageDTO dto = new ImageDTO();
-        dto.setId(image.getId());
-        dto.setUrl(image.getUrl());
-        dto.setTitle(image.getTitle());
-        dto.setDescription(image.getDescription());
-        dto.setLocation(image.getLocation());
-        dto.setGalleryId(image.getGallery().getId());
-        return dto;
     }
 }

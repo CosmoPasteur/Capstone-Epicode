@@ -5,11 +5,13 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "galleries")
 public class Gallery {
 
@@ -25,4 +27,7 @@ public class Gallery {
     private String slug;
 
     private String coverImage;
+
+    @OneToMany(mappedBy = "gallery", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> images = new ArrayList<>();
 }

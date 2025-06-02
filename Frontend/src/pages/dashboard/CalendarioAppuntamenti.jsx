@@ -1,27 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, Col, Row, Card } from "react-bootstrap";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import axios from "axios";
 
 const localizer = momentLocalizer(moment);
 
 const CalendarioAppuntamenti = ({ onClose }) => {
-  const [eventi, setEventi] = useState([
-    {
-      title: "Cliente A",
-      start: new Date(2025, 3, 1, 10, 0),
-      end: new Date(2025, 3, 1, 11, 0),
-      desc: "Seduta fotografica",
-    },
-    {
-      title: "Cliente B",
-      start: new Date(2025, 3, 3, 15, 0),
-      end: new Date(2025, 3, 3, 16, 0),
-      desc: "Ritiro foto",
-    },
-  ]);
-
+  const [eventi, setEventi] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [currentEvent, setCurrentEvent] = useState(null);
 
@@ -34,7 +21,28 @@ const CalendarioAppuntamenti = ({ onClose }) => {
 
   const [formData, setFormData] = useState(defaultEvent);
 
-  // Apri form per nuovo evento o per modifica
+  // 🔁 Carica gli appuntamenti dal backend all'avvio
+  useEffect(() => {
+    fetchAppuntamenti();
+  }, []);
+
+  const fetchAppuntamenti = async () => {
+    try {
+      const res = await axios.get("http://localhost:8080/api/appuntamenti");
+      const mappedEvents = res.data.map((app) => ({
+        id: app.id,
+        title: app.titolo,
+        start: new Date(app.data),
+        end: new Date(app.data),
+        desc: app.descrizione || "",
+      }));
+      setEventi(mappedEvents);
+    } catch (err) {
+      console.error("Errore nel recupero degli appuntamenti", err);
+    }
+  };
+
+  // 📝 Apri form per nuovo evento o modifica
   const openForm = (event) => {
     if (event) {
       setCurrentEvent(event);
@@ -46,11 +54,13 @@ const CalendarioAppuntamenti = ({ onClose }) => {
     setShowForm(true);
   };
 
+  // 🖊️ Cambio nei campi input
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // 🗓️ Cambio data/ora
   const handleDateChange = (field, date) => {
     const updatedDate = new Date(date);
     setFormData((prev) => ({
@@ -59,18 +69,48 @@ const CalendarioAppuntamenti = ({ onClose }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  // ✅ Invia dati al backend
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (currentEvent) {
-      // Modifica
-      setEventi((prev) => prev.map((ev) => (ev === currentEvent ? formData : ev)));
-    } else {
-      // Creazione
-      setEventi((prev) => [...prev, formData]);
+
+    const appuntamentoDaInviare = {
+      titolo: formData.title,
+      data: formData.start.toISOString(),
+      descrizione: formData.desc,
+    };
+
+    try {
+      if (currentEvent && currentEvent.id) {
+        // Modifica
+        await axios.put(`http://localhost:8080/api/appuntamenti/${currentEvent.id}`, appuntamentoDaInviare);
+      } else {
+        // Creazione
+        await axios.post("http://localhost:8080/api/appuntamenti", appuntamentoDaInviare);
+      }
+
+      fetchAppuntamenti(); // Aggiorna lista eventi
+      resetForm();
+    } catch (err) {
+      console.error("Errore nell'invio dell'appuntamento", err);
     }
-    resetForm();
   };
 
+  // 🗑️ Elimina appuntamento
+  const handleDelete = async () => {
+    if (!currentEvent || !currentEvent.id) return;
+
+    if (window.confirm("Sei sicuro di voler eliminare questo appuntamento?")) {
+      try {
+        await axios.delete(`http://localhost:8080/api/appuntamenti/${currentEvent.id}`);
+        fetchAppuntamenti();
+        resetForm();
+      } catch (err) {
+        console.error("Errore nell'eliminazione dell'appuntamento", err);
+      }
+    }
+  };
+
+  // 🧹 Resetta il form
   const resetForm = () => {
     setShowForm(false);
     setFormData({ ...defaultEvent });
@@ -102,6 +142,7 @@ const CalendarioAppuntamenti = ({ onClose }) => {
                   start: slotInfo.start,
                   end: slotInfo.end,
                   desc: "",
+                  id: null,
                 });
               }}
             />
@@ -167,7 +208,10 @@ const CalendarioAppuntamenti = ({ onClose }) => {
                   value={moment(formData.start).format("HH:mm")}
                   onChange={(e) => {
                     const [hours, minutes] = e.target.value.split(":");
-                    const newDate = moment(formData.start).set({ hour: hours, minute: minutes });
+                    const newDate = moment(formData.start).set({
+                      hour: hours,
+                      minute: minutes,
+                    });
                     handleDateChange("start", newDate.toDate());
                   }}
                 />
@@ -202,7 +246,10 @@ const CalendarioAppuntamenti = ({ onClose }) => {
                   value={moment(formData.end).format("HH:mm")}
                   onChange={(e) => {
                     const [hours, minutes] = e.target.value.split(":");
-                    const newDate = moment(formData.end).set({ hour: hours, minute: minutes });
+                    const newDate = moment(formData.end).set({
+                      hour: hours,
+                      minute: minutes,
+                    });
                     handleDateChange("end", newDate.toDate());
                   }}
                 />
@@ -212,6 +259,11 @@ const CalendarioAppuntamenti = ({ onClose }) => {
 
           {/* Pulsanti */}
           <div className="d-flex justify-content-between">
+            {currentEvent && currentEvent.id && (
+              <Button variant="danger" onClick={handleDelete}>
+                Elimina
+              </Button>
+            )}
             <Button variant="primary" type="submit">
               Salva Appuntamento
             </Button>

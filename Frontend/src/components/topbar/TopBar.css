@@ -34,3 +34,9 @@
     width: 50px;
   }
 }
+
+.lineTopBar {
+  margin: 0;
+  border: 2px solid black;
+  opacity: 1;
+}

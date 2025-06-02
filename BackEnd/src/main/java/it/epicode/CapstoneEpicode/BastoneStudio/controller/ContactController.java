@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/contact")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ContactController {
 
     @Autowired
@@ -19,4 +20,16 @@ public class ContactController {
         var request = contactRequestService.save(dto);
         return new ResponseEntity<>(request, HttpStatus.CREATED);
     }
+
+    @GetMapping
+    public ResponseEntity<?> getAllContactRequests() {
+        return ResponseEntity.ok(contactRequestService.findAll());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMessage(@PathVariable Long id) {
+        contactRequestService.deleteMessage(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

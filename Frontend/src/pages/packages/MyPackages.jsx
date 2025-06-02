@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const MyPackages = function () {
   return (
     <>
-      <Container fluid>
+      <Container fluid className="py-5">
         <img
           src="https://images.unsplash.com/photo-1542036813441-fc9a620d539d?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Mani di coppia"
@@ -12,10 +12,10 @@ const MyPackages = function () {
         />
         <h2 className="titolo-sopra-sfondo">PACCHETTI</h2>
       </Container>
-      <Container className="pb-4">
+      <Container className="pb-4 my-5">
         <Row className=" my-3">
           <Col xs={12} md={6} className="p-5 mb-4 mb-md-0">
-            <h3>UN INVESTIMENTO CHE DURA TUTTA LA VITA</h3>
+            <h3 className="h1 mb-5">UN INVESTIMENTO CHE DURA TUTTA LA VITA</h3>
             <p>
               Catturare la vostra storia d'amore è importantissimo per me e non lo prendo alla leggera. Quando investite
               in foto, investite in ricordi che tramandano la vostra storia d'amore alle generazioni future. In questo
@@ -24,7 +24,7 @@ const MyPackages = function () {
               significa tantissimo. I vostri ricordi e la vostra storia sono il mondo per me e sono così felice di poter
               contribuire a raccontarli!{" "}
             </p>
-            <div>
+            <div className="mt-5">
               <Link to="/contact">
                 <button className="button-info px-3 my-2">CREIAMO ARTE INSIEME</button>
               </Link>

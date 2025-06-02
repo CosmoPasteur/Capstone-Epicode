@@ -1,7 +1,10 @@
 package it.epicode.CapstoneEpicode.BastoneStudio.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import it.epicode.CapstoneEpicode.BastoneStudio.model.Gallery;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,6 +34,8 @@ public class Image {
 
     @NotNull(message = "Devi associare l'immagine a una galleria")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gallery_id")  // Specifica il nome della FK
+    @JsonBackReference
     private Gallery gallery;
 }

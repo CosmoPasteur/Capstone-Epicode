@@ -10,7 +10,7 @@
 .blog-image {
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3; /* proporzioni */
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 8px;
   transition: transform 0.3s ease;
@@ -79,4 +79,21 @@
   color: white;
   cursor: pointer;
   z-index: 1060;
+}
+
+/* ANIMAZIONE CUORICINO */
+.heartbeat {
+  animation: heartbeat 0.3s ease-in-out;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

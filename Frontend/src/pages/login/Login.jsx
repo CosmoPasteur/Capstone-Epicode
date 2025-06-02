@@ -15,10 +15,10 @@ const Login = () => {
     e.preventDefault();
 
     const validUsername = "admin";
-    const validPassword = "password";
+    const validPassword = "password123";
 
     if (username === validUsername && password === validPassword) {
-      login(); // Usa la funzione dal contesto
+      login();
       navigate("/admin");
     } else {
       setError("Credenziali errate. Riprova.");

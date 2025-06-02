@@ -36,3 +36,11 @@
 .social-link:hover {
   color: #f76c6f;
 }
+
+.collaborazioni {
+  width: auto;
+  height: 80px;
+  padding: 0.5rem;
+  padding: 1rem;
+  margin: 10px;
+}

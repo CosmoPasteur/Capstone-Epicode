@@ -7,8 +7,8 @@ const MyHome = function () {
   return (
     <main>
       {/* CAROSELLO */}
-      <Container fluid className="px-0">
-        <Carousel controls={false} indicators={false} pause="hover" fade>
+      <Container fluid className="px-0 mb-5">
+        <Carousel interval={3000} controls={false} indicators={false} pause="hover" fade>
           <Carousel.Item>
             <img
               src="https://images.unsplash.com/photo-1513279922550-250c2129b13a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -43,22 +43,24 @@ const MyHome = function () {
       <hr />
 
       {/* ACCENNO BIO  */}
-      <Container fluid className="py-5">
+      <Container fluid className="p-5 my-5">
         <Row>
           <Col xs={12} md={6}>
             <span className="h2 ehila">Ehilà,</span>
-            <div className="dark p-3 ">
-              <p>
-                <strong>Sono così felice che tu sia qui!</strong>
-              </p>
-              <p>
-                Sono Francesca, la ragazza dietro la macchina fotografica, e la mia missione è catturare la magia della
-                vostra storia d'amore attraverso il mio obiettivo. Il mio viaggio nella fotografia è iniziato con la
-                pellicola, dove ogni scatto racchiudeva un senso di magia e attesa. Col passare del tempo sono passata
-                al digitale, mantenendo viva nel mio lavoro quella nostalgica qualità cinematografica. Si tratta di
-                preservare quegli attimi senza tempo che ti trasportano indietro nel tempo, evocando emozioni che
-                risuonano per gli anni a venire ...
-              </p>
+            <div className="container-dark mb-3">
+              <div className="dark p-3 ">
+                <p>
+                  <strong>Sono così felice che tu sia qui!</strong>
+                </p>
+                <p>
+                  Sono Francesca, la ragazza dietro la macchina fotografica, e la mia missione è catturare la magia
+                  della vostra storia d'amore attraverso il mio obiettivo. Il mio viaggio nella fotografia è iniziato
+                  con la pellicola, dove ogni scatto racchiudeva un senso di magia e attesa. Col passare del tempo sono
+                  passata al digitale, mantenendo viva nel mio lavoro quella nostalgica qualità cinematografica. Si
+                  tratta di preservare quegli attimi senza tempo che ti trasportano indietro nel tempo, evocando
+                  emozioni che risuonano per gli anni a venire ...
+                </p>
+              </div>
             </div>
             <Link to="/about">
               <button className="button-info m-3 px-4 mb-5">Per saperne di più</button>

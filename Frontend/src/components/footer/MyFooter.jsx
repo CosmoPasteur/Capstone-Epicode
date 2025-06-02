@@ -15,14 +15,14 @@ const MyFooter = function () {
                   onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <h2>Bastone Studio</h2>
+                  <h2 className="bastoneStudio">Bastone Studio</h2>
                 </Link>
                 <span>FOTO</span>
               </div>
             </Col>
             <Col md={5} lg={5} className="pt-5">
               <div className="footer-dx">
-                <p className="h2">RIMANI CONNESSO</p>
+                <p className="h4">RIMANI CONNESSO</p>
                 <span>
                   <a href="https://www.instagram.com/" className="footer-link px-1">
                     <svg
@@ -60,6 +60,15 @@ const MyFooter = function () {
                 </a>
               </p>
             </Col>
+            <div className="d-flex justify-content-center">
+              <img src="public\logo-nikon.jpg" alt="Nikon" className="collaborazioni mx-3" />
+              <img src="public\GoPro_logo.svg.png" alt="logo GOPRO" className="collaborazioni" />
+              <img
+                src="public\Manfrotto_logo_monochrome_negative.png"
+                alt="logo Manfrotto"
+                className="collaborazioni manfrotto"
+              />
+            </div>
             <span className="pt-5">
               &copy; {new Date().getFullYear()} Bastone Studio - P.IVA 01234567891 | ROMA (Roma) - ITALY | PRIVACY
               POLICY COOKIE POLICY

@@ -21,24 +21,44 @@ const ContactForm = function () {
     setFormData({ ...formData, [id]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Dati inviati:", formData);
-    setSubmitted(true);
-    setShowSuccess(true);
-    setFormData({
-      nome: "",
-      cognome: "",
-      email: "",
-      telefono: "",
-      dataEvento: "",
-      tipologia: "",
-      comeConosciuto: "",
-    });
 
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 5000); // Nasconde il messaggio dopo 5 secondi
+    try {
+      const response = await fetch("http://localhost:8080/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log("Richiesta inviata con successo");
+        setSubmitted(true);
+        setShowSuccess(true);
+        setFormData({
+          nome: "",
+          cognome: "",
+          email: "",
+          telefono: "",
+          dataEvento: "",
+          tipologia: "",
+          messaggio: "",
+        });
+
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 5000);
+      } else {
+        const errorData = await response.json();
+        console.error("Errore nella richiesta:", errorData);
+        alert("Errore durante l'invio. Controlla i dati inseriti.");
+      }
+    } catch (error) {
+      console.error("Errore di rete:", error);
+      alert("Errore di connessione al server.");
+    }
   };
 
   return (
@@ -103,22 +123,22 @@ const ContactForm = function () {
                 </Form.Group>
                 <Form.Group controlId="tipologia" className="mb-3">
                   <Form.Label className="textFormContact">Tipologia di Evento/Pacchetto</Form.Label>
-                  <Form.Select value={formData.tipologia} onChange={handleChange} required>
-                    <option value="">Seleziona</option>
-                    <option value="compleanno">Compleanno</option>
-                    <option value="matrimonio">Matrimonio</option>
-                    <option value="coppia">Coppia</option>
-                    <option value="famiglia">Famiglia</option>
-                    <option value="altro">Altro</option>
+                  <Form.Select name="tipologia" value={formData.tipologia} onChange={handleChange} required>
+                    <option value="">Seleziona una tipologia</option>
+                    <option value="MATRIMONIO">Matrimonio</option>
+                    <option value="COMPLEANNO">Compleanno</option>
+                    <option value="COPPIA">Coppia</option>
+                    <option value="FAMIGLIA">Famiglia</option>
+                    <option value="ALTRO">Altro</option>
                   </Form.Select>
                 </Form.Group>
-                <Form.Group controlId="comeConosciuto" className="mb-4">
+                <Form.Group controlId="messaggio" className="mb-4">
                   <Form.Label className="textFormContact">Dimmi di più qui sotto!</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}
                     placeholder="Scrivi qui..."
-                    value={formData.comeConosciuto}
+                    value={formData.messaggio}
                     onChange={handleChange}
                     required
                   />

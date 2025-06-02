@@ -17,11 +17,21 @@
   font-style: normal;
 }
 
+.container-dark {
+  background-color: transparent;
+  position: relative;
+  border: solid 2.5px black;
+  padding: 10px;
+  margin-right: -90px;
+}
+
 .dark {
   background-color: black;
-  border: solid 2.5px black;
   color: white;
   padding: 10px;
+  margin: 5px;
+
+  position: relative;
 
   font-family: "Cal Sans", sans-serif;
   font-weight: 400;
@@ -35,7 +45,7 @@
   margin: -2rem;
 }
 
-/*    CARD IMAGE - CAROSELLO HOME   */
+/*    CARD IMAGE   */
 
 .vertical-text {
   writing-mode: vertical-rl;

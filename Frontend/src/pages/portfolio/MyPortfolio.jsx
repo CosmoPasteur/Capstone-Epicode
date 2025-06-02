@@ -1,9 +1,30 @@
 import "./MyPortfolio.css";
+import React, { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import galleries from "../../components/data/galleries.json";
 
-const MyPortfolio = function () {
+const MyPortfolio = () => {
+  const [galleries, setGalleries] = useState([]);
+
+  useEffect(() => {
+    const fetchGalleries = async () => {
+      try {
+        const res = await fetch("/api/galleries");
+        if (!res.ok) throw new Error("Errore nel recupero delle gallerie");
+
+        const data = await res.json();
+        if (!data.success) throw new Error(data.message || "Errore");
+
+        setGalleries(data.data);
+      } catch (err) {
+        console.error(err);
+        alert("Errore caricamento gallerie: " + err.message);
+      }
+    };
+
+    fetchGalleries();
+  }, []);
+
   return (
     <>
       <hr />
@@ -19,7 +40,7 @@ const MyPortfolio = function () {
                 <Link to={`/portfolio/${g.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
                   <div className="card-content">
                     <Card.Title className="vertical-text">{g.title}</Card.Title>
-                    <Card.Img variant="top" src={g.coverImage} className="card-image" />
+                    <Card.Img variant="top" src={`http://localhost:8080${g.coverImage}`} className="card-image" />
                   </div>
                 </Link>
               </Card>

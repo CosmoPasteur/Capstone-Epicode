@@ -6,14 +6,14 @@ const MyAbout = function () {
   return (
     <>
       <section className="py-5">
-        <Container>
+        <Container className="mb-5">
           <Row className="align-items-center">
             <Col xs={12} md={12} lg={6} className="mb-4 mb-md-0">
               <Container>
                 <h3 className="bg-dark text-white p-3 m-3 ">
                   PER TRASFORMARE AUTENTICHE STORIE D'AMORE IN OPERE D'ARTE CHE DURANO PER SEMPRE
                 </h3>
-                <Carousel controls={false} indicators={false} fade>
+                <Carousel controls={false} indicators={false} fade interval={3500}>
                   <Carousel.Item>
                     <img
                       src="https://images.unsplash.com/photo-1549981832-2ba2ee913334?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -38,7 +38,7 @@ const MyAbout = function () {
                 </Carousel>
               </Container>
             </Col>
-            <Col xs={12} md={12} lg={6}>
+            <Col xs={12} md={12} lg={6} className="">
               <p>
                 Ciao sono Bastone Francesca,la ragazza dietro la macchina fotografica, e la mia missione è catturare la
                 magia della vostra storia d'amore attraverso il mio obiettivo. Il mio viaggio nella fotografia è
@@ -76,6 +76,7 @@ const MyAbout = function () {
           </Row>
         </Container>
         <hr />
+        {/*    CARD SX - FUGHE D'AMORE   */}
         <Container className="p-5">
           <Row className="g-4 justify-content-center">
             <Col xs={12} sm={12} md={4} lg={4}>

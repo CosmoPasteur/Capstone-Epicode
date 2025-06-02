@@ -21,7 +21,7 @@ const TopBar = function () {
               <Nav.Link as={Link} to="/about">
                 About
               </Nav.Link>
-              <Navbar.Brand as={Link} to="/" className="mx-5">
+              <Navbar.Brand as={Link} to="/" className="mx-5 bastoneStudio">
                 Bastone Studio
               </Navbar.Brand>
               <Nav.Link as={Link} to="/packages">
@@ -37,11 +37,18 @@ const TopBar = function () {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      <div className="text-center mb-5">
-        <Link to="/login" className="fw-bold">
-          <img src="../public/bs-logo.svg" alt="Logo Bastone Studio" className="logo" />
-        </Link>
+      <div className="d-flex align-items-center mb-5 ">
+        <div className="flex-grow-1">
+          <hr className="lineTopBar" />
+        </div>
+        <div className="px-3">
+          <Link to="/login" className="fw-bold">
+            <img src="../public/bs-logo.svg" alt="Logo Bastone Studio" className="logo" />
+          </Link>
+        </div>
+        <div className="flex-grow-1">
+          <hr className="lineTopBar" />
+        </div>
       </div>
     </>
   );

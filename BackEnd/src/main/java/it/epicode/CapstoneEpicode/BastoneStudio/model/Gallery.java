@@ -1,5 +1,6 @@
 package it.epicode.CapstoneEpicode.BastoneStudio.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,10 @@ public class Gallery {
 
     private String coverImage;
 
-    @OneToMany(mappedBy = "gallery", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "gallery", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<Image> images = new ArrayList<>();
+
+
+    private String description;
 }

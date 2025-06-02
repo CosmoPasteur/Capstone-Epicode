@@ -17,4 +17,6 @@ public class GalleryDTO {
     private String slug;
 
     private String coverImage;
+
+    private String description;
 }

@@ -40,7 +40,8 @@ public class ContactRequest {
     @Enumerated(EnumType.STRING)
     private Tipologia tipologia;
 
-    private String comeConosciuto;
+    @Column(name = "come_conosciuto")
+    private String messaggio;
 
     @Column(updatable = false)
     private LocalDateTime receivedAt = LocalDateTime.now();

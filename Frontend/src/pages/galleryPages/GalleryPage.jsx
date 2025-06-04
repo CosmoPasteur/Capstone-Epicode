@@ -70,11 +70,11 @@ const GalleryPage = () => {
                       style={{ cursor: "pointer" }}
                       onClick={() => handleImageClick(image)}
                     />
-                    <div className="card-body image-details">
+                    {/* <div className="card-body image-details">
                       <h5 className="card-title">{image.title}</h5>
                       <p className="card-text">{image.description}</p>
-                      {/* <small>Location: {image.location}</small> */}
-                    </div>
+                      <small>Location: {image.location}</small>
+                    </div> */}
                   </div>
                 </div>
               ))}

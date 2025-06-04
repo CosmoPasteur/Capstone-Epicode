@@ -12,5 +12,3 @@ const ScrollToTop = () => {
 };
 
 export default ScrollToTop;
-
-// Reset dello scroll in alto ogni volta che cambia pagina.

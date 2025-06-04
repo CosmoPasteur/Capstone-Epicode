@@ -5,7 +5,6 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Verifica localStorage all'avvio
   useEffect(() => {
     const logged = localStorage.getItem("isLoggedIn") === "true";
     setIsLoggedIn(logged);

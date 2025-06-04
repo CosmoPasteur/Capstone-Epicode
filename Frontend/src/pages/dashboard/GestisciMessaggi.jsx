@@ -37,13 +37,10 @@ const GestisciMessaggi = () => {
 
       if (!res.ok) throw new Error("Errore durante l'eliminazione del messaggio");
 
-      // Rimuovi il messaggio cancellato dallo stato locale
       setMessages(messages.filter((msg) => msg.id !== id));
 
-      // Mostra la notifica di successo
       setShowSuccess(true);
 
-      // Nascondila dopo 3 secondi
       setTimeout(() => {
         setShowSuccess(false);
       }, 3000);

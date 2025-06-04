@@ -21,7 +21,7 @@ const CalendarioAppuntamenti = ({ onClose }) => {
 
   const [formData, setFormData] = useState(defaultEvent);
 
-  // 🔁 Carica gli appuntamenti dal backend all'avvio
+  // Carica gli appuntamenti dal backend all'avvio
   useEffect(() => {
     fetchAppuntamenti();
   }, []);
@@ -42,7 +42,7 @@ const CalendarioAppuntamenti = ({ onClose }) => {
     }
   };
 
-  // 📝 Apri form per nuovo evento o modifica
+  // Apri form per nuovo evento o modifica
   const openForm = (event) => {
     if (event) {
       setCurrentEvent(event);
@@ -54,13 +54,13 @@ const CalendarioAppuntamenti = ({ onClose }) => {
     setShowForm(true);
   };
 
-  // 🖊️ Cambio nei campi input
+  // Cambio nei campi input
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // 🗓️ Cambio data/ora
+  // Cambio data/ora
   const handleDateChange = (field, date) => {
     const updatedDate = new Date(date);
     setFormData((prev) => ({
@@ -69,7 +69,7 @@ const CalendarioAppuntamenti = ({ onClose }) => {
     }));
   };
 
-  // ✅ Invia dati al backend
+  // Invia dati al backend
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -95,7 +95,7 @@ const CalendarioAppuntamenti = ({ onClose }) => {
     }
   };
 
-  // 🗑️ Elimina appuntamento
+  // Elimina appuntamento
   const handleDelete = async () => {
     if (!currentEvent || !currentEvent.id) return;
 

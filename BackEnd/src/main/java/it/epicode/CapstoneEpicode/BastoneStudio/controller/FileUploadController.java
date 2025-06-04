@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 @RestController
 public class FileUploadController {
 
-    // Usa lo stesso path di upload.dir
+    // Uso lo stesso path di upload.dir
     private final Path uploadPath = Paths.get("uploads");
 
     @GetMapping("/uploads/{filename:.+}")
@@ -41,7 +41,6 @@ public class FileUploadController {
         if (resource.exists() && resource.isReadable()) {
             MediaType mediaType;
 
-            // Rileva automaticamente il MIME type
             if (filePath.toString().endsWith(".avif")) {
                 mediaType = MediaType.valueOf("image/avif");
             } else if (filePath.toString().endsWith(".webp")) {

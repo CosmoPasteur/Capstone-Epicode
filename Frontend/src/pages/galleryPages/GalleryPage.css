@@ -9,15 +9,13 @@
   color: white;
   padding: 10px;
   border-radius: 5px;
-  width: calc(100% - 20px); /* Mantieni i dettagli dentro la card */
+  width: calc(100% - 20px); /* Mantiene i dettagli dentro la card */
 }
 
-/* Posiziona la card in relazione all'immagine */
 .image-card {
   position: relative;
 }
 
-/* Mostra i dettagli quando si passa sopra con il mouse */
 .image-card:hover .image-details {
   display: block;
 }

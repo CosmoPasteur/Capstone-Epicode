@@ -16,10 +16,8 @@ public class GalleryResponseDTO {
     private String coverImage;
     private String description;
 
-    // Lista di immagini come oggetti DTO
     private List<ImageResponseDTO> images;
 
-    // Costruttore personalizzato senza immagini (opzionale)
     public GalleryResponseDTO(Long id, String title, String slug, String coverImage, String description) {
         this.id = id;
         this.title = title;

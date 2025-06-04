@@ -25,24 +25,21 @@ public class AppuntamentoController {
         return ResponseEntity.ok(appuntamenti);
     }
 
-    // GET - singolo appuntamento
     @GetMapping("/{id}")
     public ResponseEntity<Appuntamento> getById(@PathVariable Long id) {
         Optional<Appuntamento> appuntamento = repository.findById(id);
         return appuntamento.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // POST - crea un nuovo appuntamento
     @PostMapping
     public ResponseEntity<Appuntamento> create(@RequestBody Appuntamento appuntamento) {
         if (appuntamento.getId() != null) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build(); // Evita inserimenti con ID
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
         Appuntamento saved = repository.save(appuntamento);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
-    // DELETE - elimina un appuntamento
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         if (!repository.existsById(id)) {
@@ -52,7 +49,6 @@ public class AppuntamentoController {
         return ResponseEntity.noContent().build();
     }
 
-    // PUT - modifica un appuntamento esistente
     @PutMapping("/{id}")
     public ResponseEntity<Appuntamento> update(
             @PathVariable Long id,

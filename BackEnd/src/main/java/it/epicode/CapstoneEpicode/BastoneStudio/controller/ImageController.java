@@ -14,25 +14,22 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/images")
-@CrossOrigin(origins = "http://localhost:5173") // React in locale
+@CrossOrigin(origins = "http://localhost:5173")
 public class ImageController {
 
     @Autowired
     private ImageService imageService;
 
-    // Recupera immagini di una galleria
     @GetMapping("/gallery/{galleryId}")
     public ResponseEntity<List<Image>> getImagesByGalleryId(@PathVariable Long galleryId) {
         return ResponseEntity.ok(imageService.getImagesByGalleryId(galleryId));
     }
 
-    // Salva immagine da DTO (esistente)
     @PostMapping
     public ResponseEntity<Image> uploadImage(@RequestBody @Valid ImageDTO dto) {
         return ResponseEntity.ok(imageService.save(dto));
     }
 
-    // Nuovo endpoint per upload immagine da file singolo
     @PostMapping("/upload")
     public ResponseEntity<Image> uploadImageFromFile(
             @RequestParam("file") MultipartFile file,
@@ -52,7 +49,6 @@ public class ImageController {
         }
     }
 
-    // Nuovo endpoint per upload multiplo di immagini
     @PostMapping("/upload-multiple")
     public ResponseEntity<List<Image>> uploadMultipleImages(
             @RequestParam("files") List<MultipartFile> files,
@@ -69,7 +65,6 @@ public class ImageController {
         }
     }
 
-    // Elimina immagine
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteImage(@PathVariable Long id) {
         imageService.deleteImage(id);

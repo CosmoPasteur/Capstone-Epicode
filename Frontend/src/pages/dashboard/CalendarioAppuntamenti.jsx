@@ -88,7 +88,7 @@ const CalendarioAppuntamenti = ({ onClose }) => {
         await axios.post("http://localhost:8080/api/appuntamenti", appuntamentoDaInviare);
       }
 
-      fetchAppuntamenti(); // Aggiorna lista eventi
+      fetchAppuntamenti();
       resetForm();
     } catch (err) {
       console.error("Errore nell'invio dell'appuntamento", err);
@@ -110,7 +110,7 @@ const CalendarioAppuntamenti = ({ onClose }) => {
     }
   };
 
-  // 🧹 Resetta il form
+  // Resetta il form
   const resetForm = () => {
     setShowForm(false);
     setFormData({ ...defaultEvent });

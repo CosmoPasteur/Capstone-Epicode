@@ -8,7 +8,7 @@ Il fotografo (amministratore) potrà:
 
 Accedere a un’area riservata tramite login,
 
-Caricare nuove gallerie e immagini,
+Caricare nuove gallerie,
 
 Gestire richieste ricevute e aggiornare le informazioni personali.
 
